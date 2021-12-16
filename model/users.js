@@ -2,10 +2,10 @@ const db = require("../database/connection");
 const bcrypt = require("bcryptjs");
 
 //Inserts a new user to the database
-export function createUser(user) {
+function createUser(user) {
   return bcrypt
     .genSalt(10)
-    .then((salt) => bcrypt.hash(user.passwords, salt))
+    .then((salt) => bcrypt.hash(user.password, salt))
     .then((hash) => {
       const values = [user.username, hash.toString()];
       return db.query(
@@ -16,8 +16,9 @@ export function createUser(user) {
 }
 
 //gets the user from the database
-export function getUser(user) {
+function getUser(username) {
   return db
-    .query("SELECT * FROM users WHERE username = $1", user)
+    .query("SELECT * FROM users WHERE username = $1", [username])
     .then((data) => data.rows);
 }
+module.exports = { createUser, getUser };
