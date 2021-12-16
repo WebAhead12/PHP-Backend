@@ -27,7 +27,11 @@ function register(req, res, next) {
         res.status(401).send(response);
       }
     })
-    .catch(next);
+    .catch((_error) => {
+      const error = new Error("Something went wrong while trying to register");
+      error.status = 404;
+      next(error);
+    });
 }
 
 function login(req, res, next) {
@@ -48,11 +52,7 @@ function login(req, res, next) {
             res.send({ status: "wrong password" });
           } else {
             //if it is correct it creates a token
-            const token = jwt.sign(
-              { username: user.username, id: find[0].id },
-              SECRET,
-              { expiresIn: "1h" }
-            );
+            const token = jwt.sign({ username: user.username, id: find[0].id }, SECRET, { expiresIn: "1h" });
             const response = {
               access_token: token,
               status: "",
@@ -62,6 +62,10 @@ function login(req, res, next) {
         });
       }
     })
-    .catch(next);
+    .catch((_error) => {
+      const error = new Error("Something went wrong while trying to login");
+      error.status = 404;
+      next(error);
+    });
 }
 module.exports = { login, register };
