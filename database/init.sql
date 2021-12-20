@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS users, modules;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(36) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    background TEXT NOT NULL
 );
 
 CREATE TABLE modules (
@@ -12,9 +13,9 @@ CREATE TABLE modules (
     module json NOT NULL,
     user_id INTEGER REFERENCES users(id)
 );
-INSERT INTO users (username, password) VALUES
-('juan','1234567890'),
-('julio','17032003')
+INSERT INTO users (username, password,background) VALUES
+('juan','1234567890','blue'),
+('julio','17032003','green')
 ;
 
 INSERT INTO modules (module,user_id) VALUES
