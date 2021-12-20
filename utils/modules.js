@@ -1,5 +1,5 @@
 const model = require("../model/modules");
-
+//creates user's module
 function createModules(req, res, next) {
   const obj = { module: req.body, userId: req.id };
   model
@@ -11,7 +11,7 @@ function createModules(req, res, next) {
       next(error);
     });
 }
-
+//updates user's module
 function updateModules(req, res, next) {
   model
     .updateModule(req.body.module, req.body.id)
@@ -22,7 +22,7 @@ function updateModules(req, res, next) {
       next(error);
     });
 }
-
+//deletes user's module
 function deleteModules(req, res, next) {
   model
     .deleteModule(req.body.id)
@@ -33,7 +33,7 @@ function deleteModules(req, res, next) {
       next(error);
     });
 }
-
+//sends all user's modules
 function sendModules(req, res, next) {
   model
     .getModules(req.id)

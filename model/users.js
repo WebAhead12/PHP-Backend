@@ -8,7 +8,7 @@ function createUser(user) {
     .then((salt) => bcrypt.hash(user.password, salt))
     .then((hash) => {
       const values = [user.username, hash.toString(), (user.background = "")];
-      return db.query("INSERT INTO users (username,password) VALUES($1,$2)", values);
+      return db.query("INSERT INTO users (username,password,background) VALUES($1,$2,$3)", values);
     });
 }
 
