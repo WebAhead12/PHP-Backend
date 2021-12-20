@@ -4,8 +4,8 @@
  - "/" -> gets you to the first page which you login on it
  - POST "/login" -> logs in the user in the db {username,password}
  - POST "/register" -> creates the user in the db {username:String,password:String}
- - POST "/create" creates the user's module in db {module:{image:String(base64),text:String,position:[Int X,Int Y],size:[Int Width, int Height]}}
- - POST "/update" updates the user's module in db {module:{image:String(base64),text:String,position:[Int X,Int Y],size:[Int Width, int Height]},userId:Int(from authenticaion header)}
+ - POST "/create" creates the user's module in db {module : {image:String(base64), text:String, position:[Int X,Int Y], size:[Int Width, int Height]}}
+ - POST "/update" updates the user's module in db {module : {image:String(base64), text:String, position:[Int X,Int Y], size:[Int Width, int Height]}, userId:Int(from authenticaion header)}
  - POST "/delete" deletes the user's module in db {userId:Int(from authenticaion header)}
  - GET "/logout" -> logs out the user from the website
  - GET "/modules/:name" send the users modules
