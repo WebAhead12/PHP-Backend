@@ -28,7 +28,9 @@ function register(req, res, next) {
       }
     })
     .catch((_error) => {
-      const error = new Error({ response: "Something went wrong while trying to register" });
+      const error = new Error({
+        response: "Something went wrong while trying to register",
+      });
       error.status = 404;
       next(error);
     });
@@ -40,6 +42,7 @@ function login(req, res, next) {
   model
     .getUser(user.username)
     .then((find) => {
+      console.log(find);
       //if the getUser function returns and empty array there is no user in our database
       if (find.length == 0) {
         const response = { response: "noUser" };
@@ -52,7 +55,11 @@ function login(req, res, next) {
             res.send({ response: "wrong password" });
           } else {
             //if it is correct it creates a token
-            const token = jwt.sign({ username: user.username, id: find[0].id }, SECRET, { expiresIn: "1h" });
+            const token = jwt.sign(
+              { username: user.username, id: find[0].id },
+              SECRET,
+              { expiresIn: "1h" }
+            );
             const response = {
               access_token: token,
               response: "success",
