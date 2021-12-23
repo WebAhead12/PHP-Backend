@@ -59,6 +59,7 @@ function login(req, res, next) {
             const response = {
               access_token: token,
               response: "success",
+              background: find[0].background,
             };
             res.status(200).send(response);
           }
