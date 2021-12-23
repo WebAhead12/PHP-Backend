@@ -74,7 +74,7 @@ function login(req, res, next) {
 
 function updateUserBackground(req, res, next) {
   model
-    .updateBackground(req.id)
+    .updateBackground(req.body.background, req.id)
     .then(() => res.status(200).send({ response: "updatedBackground" }))
     .catch((_error) => {
       const error = new Error("Something went wrong while updating the users background");
