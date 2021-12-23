@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 4007;
 const server = express();
 
 server.use(cors());
-server.use(express.json({ limit: "150mb" }));
+server.use(express.json({ extended: false, limit: "150mb" }));
 server.use(router);
 
 server.listen(PORT, () => {
