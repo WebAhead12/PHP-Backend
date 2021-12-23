@@ -8,18 +8,17 @@ function createUser(user) {
     .then((salt) => bcrypt.hash(user.password, salt))
     .then((hash) => {
       const values = [user.username, hash.toString(), (user.background = "")];
-      return db.query(
-        "INSERT INTO users (username,password,background) VALUES($1,$2,$3)",
-        values
-      );
+      return db.query("INSERT INTO users (username,password,background) VALUES($1,$2,$3)", values);
     });
+}
+
+function updateBackground(background, userId) {
+  return db.query("UPDATE modules SET background=$1 WHERE id=$2", [background, userId]);
 }
 
 //gets the user from the database
 function getUser(username) {
   console.log(username);
-  return db
-    .query("SELECT * FROM users WHERE username = $1", [username])
-    .then((data) => data.rows);
+  return db.query("SELECT * FROM users WHERE username = $1", [username]).then((data) => data.rows);
 }
-module.exports = { createUser, getUser };
+module.exports = { createUser, getUser, updateBackground };

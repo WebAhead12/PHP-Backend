@@ -55,11 +55,7 @@ function login(req, res, next) {
             res.send({ response: "wrong password" });
           } else {
             //if it is correct it creates a token
-            const token = jwt.sign(
-              { username: user.username, id: find[0].id },
-              SECRET,
-              { expiresIn: "1h" }
-            );
+            const token = jwt.sign({ username: user.username, id: find[0].id }, SECRET, { expiresIn: "1h" });
             const response = {
               access_token: token,
               response: "success",
@@ -75,4 +71,15 @@ function login(req, res, next) {
       next(error);
     });
 }
-module.exports = { login, register };
+
+function updateUserBackground(req, res, next) {
+  model
+    .updateBackground(req.id)
+    .then(() => res.status(200).send({ response: "updatedBackground" }))
+    .catch((_error) => {
+      const error = new Error("Something went wrong while updating the users background");
+      error.status = 404;
+      next(error);
+    });
+}
+module.exports = { login, register, updateUserBackground };
