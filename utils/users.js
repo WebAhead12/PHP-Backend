@@ -55,7 +55,7 @@ function login(req, res, next) {
             res.send({ response: "wrong password" });
           } else {
             //if it is correct it creates a token
-            const token = jwt.sign({ username: user.username, id: find[0].id }, SECRET, { expiresIn: "1h" });
+            const token = jwt.sign({ username: user.username, id: find[0].id }, SECRET);
             const response = {
               access_token: token,
               response: "success",
