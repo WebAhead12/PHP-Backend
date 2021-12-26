@@ -52,7 +52,7 @@ function deleteModules(req, res, next) {
 function sendModules(req, res, next) {
   model
     .getModules(req.id)
-    .then((data) => res.status(200).send({ message: success, modules: data }))
+    .then((data) => res.status(200).send({ message: "success", modules: data }))
     .catch((_error) => {
       const error = new Error("Something went wrong while trying to get the modules");
       error.status = 404;
