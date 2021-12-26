@@ -28,8 +28,9 @@ function updateModules(req, res, next) {
             error.status = 404;
             next(error);
           });
+      } else {
+        res.status(401).send({ response: "You can't change a module which is not yours" });
       }
-      res.status(401).send({ response: "You can't change a module which is not yours" });
     })
     .catch((_error) => {
       const error = new Error("Something went wrong while trying to get the modules");
