@@ -4,7 +4,7 @@ function createModules(req, res, next) {
   const obj = { module: req.body, userId: req.id };
   model
     .createModule(obj)
-    .then((data) => res.status(200).send({ response: "success", moduleId: data.rows[0].id }))
+    .then((data) => res.status(200).send({ response: "success", moduleid: data.rows[0].id }))
     .catch((_error) => {
       const error = new Error("Something went wrong while trying to create a module");
       error.status = 404;
