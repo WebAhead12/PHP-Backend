@@ -83,4 +83,16 @@ function updateUserBackground(req, res, next) {
       next(error);
     });
 }
-module.exports = { login, register, updateUserBackground };
+
+function getUserBackground(req, res, next) {
+  model
+    .getBackground(req.id)
+    .then((result) => res.status(200).send({ background: result[0].background }))
+    .catch((_error) => {
+      const error = new Error("Something went wrong while trying to get the users background");
+      error.status = 404;
+      next(error);
+    });
+}
+
+module.exports = { login, register, updateUserBackground, getUserBackground };
