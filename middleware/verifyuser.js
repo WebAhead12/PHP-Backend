@@ -5,7 +5,7 @@ dotenv.config();
 const SECRET = process.env.SECRET;
 
 function verifyUser(req, res, next) {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.Authorization;
   if (!authHeader) {
     const error = new Error("Authorization header required");
     error.status = 400;
