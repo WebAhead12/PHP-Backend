@@ -7,9 +7,9 @@ const { login, register, updateUserBackground, getUserBackground } = require("./
 
 router.post("/login", login);
 router.post("/register", register);
-router.get("/module/:name", verifyUser, sendModules);
+router.get("/module", verifyUser, sendModules);
 router.get("/background", verifyUser, getUserBackground);
-router.post("/update/:name", verifyUser, updateUserBackground);
+router.post("/update/background", verifyUser, updateUserBackground);
 router.post("/create", verifyUser, createModules);
 router.post("/delete", verifyUser, deleteModules);
 router.post("/update", verifyUser, updateModules);
